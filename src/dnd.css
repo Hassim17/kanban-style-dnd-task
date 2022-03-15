@@ -1,0 +1,80 @@
+.dnd-container {
+  display: flex;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.dnd-column-container {
+  display: flex;
+  flex-direction: column;
+  min-width: 25%;
+}
+
+.dnd-column {
+  height: 95vh;
+  border-radius: 0 0 7px 7px;
+  padding: 5px;
+  overflow-y: scroll;
+}
+
+.column-title {
+  padding: 10px 8px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+  font-size: 15px;
+  background-color: #eeeeee;
+  border-radius: 7px 7px 0 0;
+}
+
+.task-items {
+  user-select: none;
+  padding: 10px;
+  margin: 0 0 8px 0;
+  min-height: 50px;
+  background-color: white;
+  border: none;
+  border-left: rgb(1, 202, 1) solid 3px;
+  border-radius: 4px 0 0 4px;
+}
+
+.task-index {
+  color: grey;
+}
+
+.task-orderNo {
+  font-weight: 600;
+}
+
+.task-orders {
+  color: #888;
+  font-family: sans-serif;
+  font-size: 11px;
+}
+
+.task-dueDate {
+  font-family: "Montserrat", sans-serif;
+  color: rgb(100, 100, 100);
+  font-size: 10px;
+  padding: 5px 0 0;
+  display: flex;
+  justify-content: space-between;
+}
+.task-dueDate span {
+  font-weight: 500;
+  color: black;
+}
+
+.assigned {
+  font-size: 12px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+}
+
+.avatar {
+  background-color: rgb(200, 227, 236);
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-left: 10px;
+}
