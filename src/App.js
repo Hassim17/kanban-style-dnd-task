@@ -2,6 +2,8 @@ import "./App.css";
 import DragAndDrop from "./dnd";
 import Header from "./header";
 
+import { BiMessageSquareDetail } from "react-icons/bi";
+
 function App() {
   return (
     <div className="App">
@@ -9,7 +11,7 @@ function App() {
       <DragAndDrop />
 
       <button className="comment-icon">
-        <i className="fas fa-comment"></i>
+        <BiMessageSquareDetail />
       </button>
     </div>
   );

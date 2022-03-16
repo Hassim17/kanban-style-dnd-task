@@ -45,7 +45,7 @@ button.active {
   height: 30px;
 }
 
-.fa-search {
+.search-icon {
   position: relative;
   right: 30px;
   font-size: larger;

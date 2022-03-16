@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import "./header.css";
 
+import { FaFilter, FaSyncAlt } from "react-icons/fa";
+import { RiSearchLine, RiSettings4Fill } from "react-icons/ri";
+import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+
 const Header = () => {
   const [isAllActive, setIsAllActive] = useState(true);
   const [isOnlyMyActive, setIsOnlyMyActive] = useState(false);
@@ -41,10 +45,10 @@ const Header = () => {
           RECENTLY UPLOADED
         </button>
         <button>
-          <i class="fas fa-filter"></i>
+          <FaFilter />
         </button>
         <button>
-          <i class="fas fa-sync-alt"></i>
+          <FaSyncAlt />
         </button>
       </div>
 
@@ -54,16 +58,16 @@ const Header = () => {
           type="text"
           placeholder="Search"
         />
-        <i class="fas fa-search"></i>
+        <RiSearchLine className="search-icon" />
         <button>
-          <i class="fas fa-cog"></i> Configurations
+          <RiSettings4Fill fontSize={17} /> Configurations
         </button>
         <div className="header-right-rangeCount">(0 - 30)</div>
         <button>
-          <i className="fas fa-chevron-left"></i>
+          <IoIosArrowBack fontSize={17} />
         </button>
         <button>
-          <i className="fas fa-chevron-right"></i>
+          <IoIosArrowForward fontSize={17} />
         </button>
       </div>
     </div>
