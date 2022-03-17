@@ -1,8 +1,16 @@
 import React, { useState } from "react";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
+import { v4 as uuidv4 } from "uuid";
 import "./dnd.scss";
 
-import { itemsFromBackend, columnsFromBackend, contents } from "./data";
+import itemsFromBackend from "./MOCK_DATA.json";
+
+export const columnsFromBackend = {
+  [uuidv4()]: { name: "RECIEVED ORDERS", items: itemsFromBackend },
+  [uuidv4()]: { name: "ORDER IN PROGRESS", items: [] },
+  [uuidv4()]: { name: "ORDER IS READY FOR DELIVERY", items: [] },
+  [uuidv4()]: { name: "ORDER PICKED UP", items: [] },
+};
 
 const onDragEnd = (result, columns, setColumns) => {
   if (!result.destination) return;
@@ -73,20 +81,17 @@ function DragAndDrop() {
                                   {...provided.dragHandleProps}
                                   className="task-items"
                                 >
-                                  <h5 className="task-index">
-                                    #
-                                    {itemsFromBackend.findIndex(
-                                      (object) => object === item
-                                    )}
-                                  </h5>
+                                  <h5 className="task-index">#{item.index}</h5>
                                   <div className="task-orderNo">
-                                    Order No: #{item.content.orderNo}
+                                    Order No: #{item.orderNo}
                                   </div>
                                   <div className="task-orders">
-                                    {contents.orders}
+                                    {item.orderedItems}
                                   </div>
                                   <div className="task-dueDate">
-                                    DUE: <span>{contents.dueDate}</span>
+                                    <div>
+                                      DUE: <span>{item.dueDate}pm</span>
+                                    </div>
                                     <div className="assigned">
                                       ASSIGNED TO
                                       <div className="avatar"></div>
