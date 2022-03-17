@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import { v4 as uuidv4 } from "uuid";
 import "./dnd.scss";
-
-import itemsFromBackend from "./MOCK_DATA.json";
+import itemsFromBackend from "./dataFromBackend.json";
 
 export const columnsFromBackend = {
   [uuidv4()]: { name: "RECIEVED ORDERS", items: itemsFromBackend },
