@@ -2,7 +2,9 @@
   margin: 20px;
   font-family: "Montserrat", sans-serif;
 }
-
+::-webkit-scrollbar {
+  display: none;
+}
 .comment-icon {
   position: fixed;
   width: 55px;

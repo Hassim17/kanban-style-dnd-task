@@ -5,47 +5,38 @@ import { RiSearchLine, RiSettings4Fill } from "react-icons/ri";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 
 const Header = () => {
-  const [isAllActive, setIsAllActive] = useState(true);
-  const [isOnlyMyActive, setIsOnlyMyActive] = useState(false);
-  const [isRecentActive, setIsRecentActive] = useState(false);
+  const ButtonGroup = ({ buttons }) => {
+    const [clickedId, setClickedId] = useState(0);
+
+    const handleClick = (event, id) => setClickedId(id);
+    return (
+      <>
+        {buttons.map((buttonLabel, i) => (
+          <button
+            key={i}
+            name={buttonLabel}
+            onClick={(event) => handleClick(event, i)}
+            className={i === clickedId && "active"}
+          >
+            {buttonLabel}
+          </button>
+        ))}
+      </>
+    );
+  };
 
   return (
     <div className="header">
       <div className="header-left">
         <h5>Tickets</h5>
-        <button
-          className={isAllActive ? "active" : "none"}
-          onClick={() => {
-            setIsAllActive(true);
-            setIsOnlyMyActive(false);
-            setIsRecentActive(false);
-          }}
-        >
-          ALL
-        </button>
-        <button
-          className={isOnlyMyActive ? "active" : "none"}
-          onClick={() => {
-            setIsOnlyMyActive(true);
-            setIsAllActive(false);
-            setIsRecentActive(false);
-          }}
-        >
-          ONLY MY TICKETS
-        </button>
-        <button
-          className={isRecentActive ? "active" : "none"}
-          onClick={() => {
-            setIsRecentActive(true);
-            setIsAllActive(false);
-            setIsOnlyMyActive(false);
-          }}
-        >
-          RECENTLY UPLOADED
-        </button>
-        <button>
-          <FaFilter />
-        </button>
+        <ButtonGroup
+          buttons={[
+            "ALL",
+            "ONLY MY TICKETS",
+            "RECENTLY UPLOADED",
+            <FaFilter />,
+          ]}
+        />
         <button>
           <FaSyncAlt />
         </button>
