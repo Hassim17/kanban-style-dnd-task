@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
+import "./dnd.scss";
 
-import "./dnd.css";
-
-import { itemsFromBackend, columnsFromBackend } from "./data";
+import { itemsFromBackend, columnsFromBackend, contents } from "./data";
 
 const onDragEnd = (result, columns, setColumns) => {
   if (!result.destination) return;
@@ -18,14 +17,8 @@ const onDragEnd = (result, columns, setColumns) => {
     destItems.splice(destination.index, 0, removed);
     setColumns({
       ...columns,
-      [source.droppableId]: {
-        ...sourceColumn,
-        items: sourceItems,
-      },
-      [destination.droppableId]: {
-        ...destColumn,
-        items: destItems,
-      },
+      [source.droppableId]: { ...sourceColumn, items: sourceItems },
+      [destination.droppableId]: { ...destColumn, items: destItems },
     });
   } else {
     const column = columns[source.droppableId];
@@ -34,10 +27,7 @@ const onDragEnd = (result, columns, setColumns) => {
     copiedItems.splice(destination.index, 0, removed);
     setColumns({
       ...columns,
-      [source.droppableId]: {
-        ...column,
-        items: copiedItems,
-      },
+      [source.droppableId]: { ...column, items: copiedItems },
     });
   }
 };
@@ -52,68 +42,67 @@ function DragAndDrop() {
         {Object.entries(columns).map(([columnId, column], index) => {
           return (
             <div className="dnd-column-container" key={columnId}>
-              <div style={{ margin: 8 }}>
-                <div className="column-title">
-                  {column.name}({column.items.length})
-                </div>
-                <Droppable droppableId={columnId} key={columnId}>
-                  {(provided, snapshot) => {
-                    return (
-                      <div
-                        {...provided.droppableProps}
-                        ref={provided.innerRef}
-                        className="dnd-column"
-                        style={{
-                          background: snapshot.isDraggingOver
-                            ? "lightblue"
-                            : "#EEEEEE",
-                        }}
-                      >
-                        {column.items.map((item, index) => {
-                          return (
-                            <Draggable
-                              key={item.id}
-                              draggableId={item.id}
-                              index={index}
-                            >
-                              {(provided, snapshot) => {
-                                return (
-                                  <div
-                                    ref={provided.innerRef}
-                                    {...provided.draggableProps}
-                                    {...provided.dragHandleProps}
-                                    className="task-items"
-                                  >
-                                    <h5 className="task-index">
-                                      #{item.content.index}
-                                    </h5>
-                                    <div className="task-orderNo">
-                                      Order No: #{item.content.orderNo}{" "}
-                                    </div>
-                                    <div className="task-orders">
-                                      {item.content.items}
-                                    </div>
-                                    <div className="task-dueDate">
-                                      <div>
-                                        DUE: <span>{item.content.dueDate}</span>
-                                      </div>
-                                      <div className="assigned">
-                                        ASSIGNED TO{" "}
-                                        <div className="avatar"></div>
-                                      </div>
+              <div className="column-title">
+                {column.name}({column.items.length})
+              </div>
+              <Droppable droppableId={columnId} key={columnId}>
+                {(provided, snapshot) => {
+                  return (
+                    <div
+                      {...provided.droppableProps}
+                      ref={provided.innerRef}
+                      className="dnd-column"
+                      style={{
+                        background: snapshot.isDraggingOver
+                          ? "lightblue"
+                          : "#EEEEEE",
+                      }}
+                    >
+                      {column.items.map((item, index) => {
+                        return (
+                          <Draggable
+                            key={item.id}
+                            draggableId={item.id}
+                            index={index}
+                          >
+                            {(provided, snapshot) => {
+                              return (
+                                <div
+                                  ref={provided.innerRef}
+                                  {...provided.draggableProps}
+                                  {...provided.dragHandleProps}
+                                  className="task-items"
+                                >
+                                  <h5 className="task-index">
+                                    #
+                                    {itemsFromBackend.findIndex(
+                                      (object) => object === item
+                                    )}
+                                  </h5>
+                                  <div className="task-orderNo">
+                                    Order No: #{item.content.orderNo}
+                                  </div>
+                                  <div className="task-orders">
+                                    {contents.orders}
+                                  </div>
+                                  <div className="task-dueDate">
+                                    DUE: <span>{contents.dueDate}</span>
+                                    <div className="assigned">
+                                      ASSIGNED TO
+                                      <div className="avatar"></div>
                                     </div>
                                   </div>
-                                );
-                              }}
-                            </Draggable>
-                          );
-                        })}
-                        {provided.placeholder}
-                      </div>
-                    );
-                  }}
-                </Droppable>
-              </div>
+                                </div>
+                              );
+                            }}
+                          </Draggable>
+                        );
+                      })}
+                      {provided.placeholder}
+                    </div>
+                  );
+                }}
+              </Droppable>
             </div>
           );
         })}

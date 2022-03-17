@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import "./header.css";
-
+import "./header.scss";
 import { FaFilter, FaSyncAlt } from "react-icons/fa";
 import { RiSearchLine, RiSettings4Fill } from "react-icons/ri";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
@@ -15,7 +14,7 @@ const Header = () => {
       <div className="header-left">
         <h5>Tickets</h5>
         <button
-          className={isAllActive ? "active" : "unactive"}
+          className={isAllActive ? "active" : "none"}
           onClick={() => {
             setIsAllActive(true);
             setIsOnlyMyActive(false);
@@ -25,7 +24,7 @@ const Header = () => {
           ALL
         </button>
         <button
-          className={isOnlyMyActive ? "active" : "unactive"}
+          className={isOnlyMyActive ? "active" : "none"}
           onClick={() => {
             setIsOnlyMyActive(true);
             setIsAllActive(false);
@@ -35,7 +34,7 @@ const Header = () => {
           ONLY MY TICKETS
         </button>
         <button
-          className={isRecentActive ? "active" : "unactive"}
+          className={isRecentActive ? "active" : "none"}
           onClick={() => {
             setIsRecentActive(true);
             setIsAllActive(false);

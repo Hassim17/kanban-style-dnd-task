@@ -1,0 +1,70 @@
+.dnd-container {
+  display: flex;
+  justify-content: space-between;
+  height: 100%;
+
+  .dnd-column-container {
+    width: 25%;
+    margin: 7px;
+
+    .column-title {
+      padding: 10px 8px;
+      font-family: "Montserrat", sans-serif;
+      font-weight: 600;
+      background-color: #eeeeee;
+      border-radius: 7px 7px 0 0;
+    }
+    .dnd-column {
+      height: 95vh;
+      border-radius: 0 0 7px 7px;
+      padding: 5px;
+      overflow-y: scroll;
+
+      .task-items {
+        padding: 10px;
+        margin: 0 0 8px 0;
+        background-color: white;
+        border-left: rgb(1, 202, 1) solid 4px;
+        border-radius: 5px 0 0 5px;
+        color: grey;
+
+        .task-orderNo {
+          font-weight: 600;
+          color: black;
+        }
+
+        .task-orders {
+          font-family: sans-serif;
+          font-size: 11px;
+        }
+
+        .task-dueDate {
+          color: black;
+          font-size: 10px;
+          padding: 5px 0 0;
+          display: flex;
+          justify-content: space-between;
+          span {
+            font-weight: 600;
+            margin-left: -25px;
+          }
+
+          .assigned {
+            font-size: 12px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+
+            .avatar {
+              background-color: rgb(200, 227, 236);
+              width: 30px;
+              height: 30px;
+              border-radius: 50%;
+              margin-left: 10px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
