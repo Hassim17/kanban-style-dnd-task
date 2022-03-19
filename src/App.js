@@ -1,13 +1,11 @@
 import "./App.css";
-import DragAndDrop from "./dnd";
-import Header from "./header";
+import KanBanDnd from "./kanBanDnD";
 import { BiMessageSquareDetail } from "react-icons/bi";
 
 function App() {
   return (
     <div className="App">
-      <Header />
-      <DragAndDrop />
+      <KanBanDnd />
       <button className="comment-icon">
         <BiMessageSquareDetail />
       </button>

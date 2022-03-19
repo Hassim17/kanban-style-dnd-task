@@ -39,7 +39,7 @@ const onDragEnd = (result, columns, setColumns) => {
   }
 };
 
-function DragAndDrop() {
+function DragAndDrop({ searchTerm }) {
   const [columns, setColumns] = useState(columnsFromBackend);
   return (
     <div className="dnd-container">
@@ -65,43 +65,55 @@ function DragAndDrop() {
                           : "#EEEEEE",
                       }}
                     >
-                      {column.items.map((item, index) => {
-                        return (
-                          <Draggable
-                            key={item.id}
-                            draggableId={item.id}
-                            index={index}
-                          >
-                            {(provided, snapshot) => {
-                              return (
-                                <div
-                                  ref={provided.innerRef}
-                                  {...provided.draggableProps}
-                                  {...provided.dragHandleProps}
-                                  className="task-items"
-                                >
-                                  <h5 className="task-index">#{item.index}</h5>
-                                  <div className="task-orderNo">
-                                    Order No: #{item.orderNo}
-                                  </div>
-                                  <div className="task-orders">
-                                    {item.orderedItems}
-                                  </div>
-                                  <div className="task-dueDate">
-                                    <div>
-                                      DUE: <span>{item.dueDate}pm</span>
+                      {column.items
+                        .filter((val) => {
+                          if (searchTerm === "") {
+                            return val;
+                          } else if (
+                            val.orderNo.toString().includes(searchTerm)
+                          ) {
+                            return val;
+                          }
+                        })
+                        .map((item, index) => {
+                          return (
+                            <Draggable
+                              key={item.id}
+                              draggableId={item.id}
+                              index={index}
+                            >
+                              {(provided, snapshot) => {
+                                return (
+                                  <div
+                                    ref={provided.innerRef}
+                                    {...provided.draggableProps}
+                                    {...provided.dragHandleProps}
+                                    className="task-items"
+                                  >
+                                    <h5 className="task-index">
+                                      #{item.index}
+                                    </h5>
+                                    <div className="task-orderNo">
+                                      Order No: #{item.orderNo}
                                     </div>
-                                    <div className="assigned">
-                                      ASSIGNED TO
-                                      <div className="avatar"></div>
+                                    <div className="task-orders">
+                                      {item.orderedItems}
+                                    </div>
+                                    <div className="task-dueDate">
+                                      <div>
+                                        DUE: <span>{item.dueDate}pm</span>
+                                      </div>
+                                      <div className="assigned">
+                                        ASSIGNED TO
+                                        <div className="avatar"></div>
+                                      </div>
                                     </div>
                                   </div>
-                                </div>
-                              );
-                            }}
-                          </Draggable>
-                        );
-                      })}
+                                );
+                              }}
+                            </Draggable>
+                          );
+                        })}
                       {provided.placeholder}
                     </div>
                   );
