@@ -1,4 +1,4 @@
-import "./App.css";
+import "./App.scss";
 import KanBanDnd from "./kanBanDnD";
 import { BiMessageSquareDetail } from "react-icons/bi";
 
