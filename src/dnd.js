@@ -49,9 +49,7 @@ function DragAndDrop({ searchTerm }) {
         {Object.entries(columns).map(([columnId, column], index) => {
           return (
             <div className="dnd-column-container" key={columnId}>
-              <div className="column-title">
-                {column.name}({column.items.length})
-              </div>
+              <div className="column-title">{`${column.name}(${column.items.length})`}</div>
               <Droppable droppableId={columnId} key={columnId}>
                 {(provided, snapshot) => {
                   return (
@@ -67,13 +65,10 @@ function DragAndDrop({ searchTerm }) {
                     >
                       {column.items
                         .filter((val) => {
-                          if (searchTerm === "") {
+                          if (searchTerm === "") return val;
+                          else if (val.orderNo.toString().includes(searchTerm))
                             return val;
-                          } else if (
-                            val.orderNo.toString().includes(searchTerm)
-                          ) {
-                            return val;
-                          }
+                          else return NaN;
                         })
                         .map((item, index) => {
                           return (
@@ -90,15 +85,9 @@ function DragAndDrop({ searchTerm }) {
                                     {...provided.dragHandleProps}
                                     className="task-items"
                                   >
-                                    <h5 className="task-index">
-                                      #{item.index}
-                                    </h5>
-                                    <div className="task-orderNo">
-                                      Order No: #{item.orderNo}
-                                    </div>
-                                    <div className="task-orders">
-                                      {item.orderedItems}
-                                    </div>
+                                    <h5 className="task-index">{`#${item.index}`}</h5>
+                                    <div className="task-orderNo">{`Order No: #${item.orderNo}`}</div>
+                                    <div className="task-orders">{`${item.orderedItems}`}</div>
                                     <div className="task-dueDate">
                                       <div>
                                         DUE: <span>{item.dueDate}pm</span>

@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import "./kanBanDnD.scss";
 import DragAndDrop from "./dnd";
 import { FaFilter, FaSyncAlt } from "react-icons/fa";
 import { RiSearchLine, RiSettings4Fill } from "react-icons/ri";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+import "./kanBanDnD.scss";
 
 const KanBanDnd = () => {
   const [searchTerm, setSearchTerm] = useState("");
